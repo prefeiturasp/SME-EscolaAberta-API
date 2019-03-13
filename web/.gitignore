@@ -1,0 +1,10 @@
+djangoenv
+*.sqlite3
+.idea
+*.pyc
+envpjt
+admifiles
+djangoenv
+imagens
+envcurso
+envdjango

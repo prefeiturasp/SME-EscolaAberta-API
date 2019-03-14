@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'creditos',
     'debitos',
     'testimagem',
+    # Escola Aberta
     'escolas',
     'ambientes',
+    'turmas',
+    'servidores',
     'corsheaders',
 ]
 

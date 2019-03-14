@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -25,8 +24,7 @@ SECRET_KEY = '=fgi4v@h)k$qcrqiv=5t7pu-g(xsl4)4)xjxk_rgcem$ki^)^*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pontos-tutisticos.herokuapp.com', 'localhost', '127.0.0.1','django.loc']
-
+ALLOWED_HOSTS = ['pontos-tutisticos.herokuapp.com', 'localhost', '127.0.0.1', 'django.loc']
 
 # Application definition
 
@@ -44,6 +42,7 @@ INSTALLED_APPS = [
     'debitos',
     'testimagem',
     'escolas',
+    'ambientes',
     'corsheaders',
 ]
 
@@ -78,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'apsapi.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -88,7 +86,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -108,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -122,7 +118,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
@@ -130,14 +125,11 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = 'imagens'
 MEDIA_URL = '/media/'
 
-
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
 }
 
-
-
-#REST_FRAMEWORK = {
+# REST_FRAMEWORK = {
 #    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 #    'PAGE_SIZE': 10,
 #    'DEFAULT_PERMISSION_CLASSES': (
@@ -147,8 +139,7 @@ REST_FRAMEWORK = {
 #        'rest_framework.authentication.BasicAuthentication',
 #        'rest_framework.authentication.SessionAuthentication',
 #    ),
-#}
-
+# }
 
 
 CORS_ORIGIN_WHITELIST = (

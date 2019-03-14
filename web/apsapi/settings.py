@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'creditos',
     'debitos',
     'testimagem',
+    'escolas',
     'corsheaders',
 ]
 

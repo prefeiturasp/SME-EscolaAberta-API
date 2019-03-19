@@ -1,11 +1,9 @@
 from django.db import models
-from escolas.models import Escolas
-from ambientes.models import AmbientesUnidadesEdu
 
 
 class Turmas(models.Model):
     dre = models.TextField(blank=True, null=True)
-    codesc = models.ForeignKey(Escolas, on_delete=models.DO_NOTHING, blank=True, null=True)
+    codesc = models.CharField(max_length=6, blank=True, null=True)
     codinep = models.IntegerField(blank=True, null=True)
     tipoesc = models.CharField(max_length=12, blank=True, null=True)
     nomesc = models.CharField(max_length=60, blank=True, null=True)
@@ -15,7 +13,7 @@ class Turmas(models.Model):
     dturnos = models.TextField(blank=True, null=True)
     t2d3d = models.TextField(blank=True, null=True)
     numsala = models.CharField(max_length=6, blank=True, null=True)
-    codamb = models.ForeignKey(AmbientesUnidadesEdu, blank=True, null=True, on_delete=models.DO_NOTHING)
+    codamb = models.IntegerField(blank=True, null=True)
     descamb = models.CharField(max_length=70, blank=True, null=True)
     capreal = models.IntegerField(blank=True, null=True)
     metragem = models.IntegerField(blank=True, null=True)
@@ -39,16 +37,16 @@ class Turmas(models.Model):
     classes = models.IntegerField(blank=True, null=True)
     x_semana = models.BigIntegerField(blank=True, null=True)
     durac_dia = models.IntegerField(blank=True, null=True)
-    durac_semana = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+    durac_semana = models.FloatField(blank=True, null=True)
     escolarizacao = models.TextField(blank=True, null=True)
     dias = models.TextField(blank=True, null=True)
-    al_reprov = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    al_evad = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    al_aprov = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    al_fale = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    al_excl = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    al_ncom = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    al_nrem = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+    al_reprov = models.FloatField(blank=True, null=True)
+    al_evad = models.FloatField(blank=True, null=True)
+    al_aprov = models.FloatField(blank=True, null=True)
+    al_fale = models.FloatField(blank=True, null=True)
+    al_excl = models.FloatField(blank=True, null=True)
+    al_ncom = models.FloatField(blank=True, null=True)
+    al_nrem = models.FloatField(blank=True, null=True)
     pnee_ah = models.BigIntegerField(blank=True, null=True)
     pnee_da = models.BigIntegerField(blank=True, null=True)
     pnee_df = models.BigIntegerField(blank=True, null=True)

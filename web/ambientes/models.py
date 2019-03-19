@@ -5,7 +5,7 @@ from escolas.models import Escolas
 # Create your models here.
 class AmbientesUnidadesEdu(models.Model):
     tpamb = models.IntegerField(primary_key=True)
-    codesc = models.ForeignKey(Escolas, on_delete=models.DO_NOTHING, blank=True, null=True)
+    codesc = models.CharField(max_length=6, blank=True, null=True)
     numsala = models.CharField(max_length=6, blank=True, null=True)
     descamb = models.CharField(max_length=70, blank=True, null=True)
     capfis = models.IntegerField(blank=True, null=True)

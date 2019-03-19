@@ -16,28 +16,30 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from portal.views.modalidades import ModalidadesPraticadas
+from portal.views.total_vagas_mat_serie import VagasMatriculasBySerie
 from rest_framework import routers
 
-
-#-----------------arquivos staticos-------------------------------------------------
+# -----------------arquivos staticos-------------------------------------------------
 from django.conf import settings
 from django.conf.urls.static import static
-#-----------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
-
-from core.api.viewsets import NucleoViewSet
-from debitos.api.viewsets import DebitosViewSet
-from creditos.api.viewsets import CreditosViewSet
-from testimagem.api.viewsets import MinhasImagensViewSet
-
+from escolas.api.viewsets import EscolasViewSet
+from turmas.api.viewsets import TurmasViewSet
+from servidores.api.viewsets import ServidoresViewSet
+from ambientes.api.viewsets import AmbientesViewSet
 
 router = routers.DefaultRouter()
-router.register(r'api/billingCycles', NucleoViewSet,base_name='Nucleo')
-router.register(r'api/debitos', DebitosViewSet)
-router.register(r'api/creditos', CreditosViewSet)
-router.register(r'api/album', MinhasImagensViewSet)
+router.register(r'api/escolas', EscolasViewSet)
+router.register(r'api/turmas', TurmasViewSet)
+router.register(r'api/servidores', ServidoresViewSet)
+router.register(r'api/ambientes', AmbientesViewSet)
+# router.register('api/modalidades/<int:codesc>', ModalidadesPraticadas.as_view(), base_name='ModalidadeEnsino')
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('admin/', admin.site.urls),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  path('', include(router.urls)),
+                  path('admin/', admin.site.urls),
+                  path('api/modalidades/<slug:codesc>', ModalidadesPraticadas.as_view()),
+                  path('api/totvagmatbyserie/<slug:codesc>', VagasMatriculasBySerie.as_view()),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

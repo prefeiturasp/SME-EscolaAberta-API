@@ -37,15 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_filters',
-    'core',
-    'creditos',
-    'debitos',
-    'testimagem',
     # Escola Aberta
     'escolas',
     'ambientes',
     'turmas',
     'servidores',
+    'rest_framework_word_filter',
     'corsheaders',
 ]
 
@@ -111,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -130,18 +127,20 @@ MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
 }
 
 # REST_FRAMEWORK = {
-#    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-#    'PAGE_SIZE': 10,
-#    'DEFAULT_PERMISSION_CLASSES': (
-#        'rest_framework.permissions.IsAuthenticated',
-#    ),
-#    'DEFAULT_AUTHENTICATION_CLASSES': (
-#        'rest_framework.authentication.BasicAuthentication',
-#        'rest_framework.authentication.SessionAuthentication',
-#    ),
+# #    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+# #    'PAGE_SIZE': 10,
+# #    'DEFAULT_PERMISSION_CLASSES': (
+# #        'rest_framework.permissions.IsAuthenticated',
+# #    ),
+# #    'DEFAULT_AUTHENTICATION_CLASSES': (
+# #        'rest_framework.authentication.BasicAuthentication',
+# #        'rest_framework.authentication.SessionAuthentication',
+# #    ),
 # }
 
 
@@ -153,12 +152,12 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 CORS_ALLOW_METHODS = (
-    'DELETE',
+    # 'DELETE',
     'GET',
-    'OPTIONS',
-    'PATCH',
-    'POST',
-    'PUT',
+    # 'OPTIONS',
+    # 'PATCH',
+    # 'POST',
+    # 'PUT',
 )
 
 CORS_ALLOW_HEADERS = (

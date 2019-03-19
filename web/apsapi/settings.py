@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ambientes',
     'turmas',
     'servidores',
+    'alunos',
     'rest_framework_word_filter',
     'corsheaders',
 ]

@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from portal.views.ambientes import Ambientes
 from portal.views.modalidades import ModalidadesPraticadas
+from portal.views.total_servidores_atuacao import ServidoresAtuacaoEscola
+from portal.views.total_servidores_escolaridade import ServidoresEscolarizacao
 from portal.views.total_vagas_mat_serie import VagasMatriculasBySerie
 from rest_framework import routers
 
@@ -42,4 +45,7 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('api/modalidades/<slug:codesc>', ModalidadesPraticadas.as_view()),
                   path('api/totvagmatbyserie/<slug:codesc>', VagasMatriculasBySerie.as_view()),
+                  path('api/ambientesbyescola/<slug:codesc>', Ambientes.as_view()),
+                  path('api/totservatuacao/<slug:codesc>', ServidoresAtuacaoEscola.as_view()),
+                  path('api/totservescolarizacao/<slug:codesc>', ServidoresEscolarizacao.as_view()),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

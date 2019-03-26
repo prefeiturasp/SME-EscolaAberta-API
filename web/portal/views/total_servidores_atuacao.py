@@ -13,11 +13,8 @@ class ServidoresAtuacaoEscola(APIView):
 
     def get(self, request, codesc, format=None):
         """
-
-        :param request:
-        :param codesc:
-        :param format:
-        :return:
+        Endpoint que disponibiliza um totalizador de servidores e sua atuação por escola, conforme o Encontre uma escola do portalSME
+        :param codesc: Codigo da escola
         """
         query = """
                    select trim(dc_cargo_atual) area_de_atuacao, count(*) total

@@ -13,11 +13,8 @@ class VagasMatriculasBySerie(APIView):
 
     def get(self, request, codesc, format=None):
         """
-
-        :param request:
-        :param codesc:
-        :param format:
-        :return:
+        Endpoint que disponibiliza um totalizador de vagas e matriculas por serie e escola, conforme o Encontre uma escola do portalSME
+        :param codesc: Codigo da escola
         """
         query = """
 select turma.descserie as serie,

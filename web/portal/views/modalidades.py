@@ -13,11 +13,8 @@ class ModalidadesPraticadas(APIView):
 
     def get(self, request, codesc, format=None):
         """
-
-        :param request:
-        :param codesc:
-        :param format:
-        :return:
+        Endpoint que disponibiliza as modalidades de uma determinada escola, conforme o Encontre uma escola do portalSME
+        :param codesc: Codigo da escola
         """
         query = """
         select turma.modal
@@ -31,4 +28,3 @@ class ModalidadesPraticadas(APIView):
         modalidades = {'modalidade': [mod[0] for mod in row]}
 
         return Response(modalidades)
-

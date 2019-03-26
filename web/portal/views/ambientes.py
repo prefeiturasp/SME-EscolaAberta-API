@@ -13,11 +13,8 @@ class Ambientes(APIView):
 
     def get(self, request, codesc, format=None):
         """
-
-        :param request:
-        :param codesc:
-        :param format:
-        :return:
+        Endpoint que disponibiliza um totalizador de ambientes por escola, conforme o Encontre uma escola do portalSME
+        :param codesc: Codigo da escola
         """
         query = """
                     select trim(descamb) as ambiente, count(*) as total
@@ -34,3 +31,4 @@ class Ambientes(APIView):
                             for row in cursor.fetchall()]}
 
         return Response(modalidades)
+

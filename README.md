@@ -1,4 +1,4 @@
-# Deployment Docker of Django, PostgreSQL database, NginX, Gunicorn
+#Escola Aberta API
 This is a [Docker][] setup for deploying your web application based on Django. It also contains tox file for testing your app.
 
 ## Requirements
@@ -24,28 +24,3 @@ make sure your django app is configures for production use using this <a href='h
 - `make checkstyle`
 - `make test`
 - `make coverage`
-
-[Docker]: https://www.docker.com/
-[Django]: https://www.djangoproject.com/
-[Gunicorn]: http://gunicorn.org/
-[NginX]: https://www.nginx.com/
-[Postgres]: https://www.postgresql.org/
-[Python]: https://www.python.org/
-[pipenv]: https://docs.pipenv.org/
-[tox]: https://tox.readthedocs.io/en/latest/
-[pytest]: https://docs.pytest.org/en/latest/
-[safety]: https://pyup.io/safety/
-[bandit]: https://github.com/openstack/bandit
-[isort]: https://github.com/timothycrosley/isort
-[prospector]: https://github.com/landscapeio/prospector
-[GitLab]: https://about.gitlab.com/
-[Makefile]: https://www.gnu.org/software/make/manual/make.html
-[Docker-Compose]: https://docs.docker.com/compose/
-
-## Reference
-[Example using Docker, Django, multiple Postgres databases, NginX, Gunicorn, pipenv, GitLab CI and tox][post]
-
-[post]: https://github.com/pawamoy/docker-nginx-postgres-django-example
-
-## License
-Software licensed under the [ISC license](/LICENSE).

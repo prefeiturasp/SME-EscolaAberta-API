@@ -1,0 +1,31 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+Django = "*"
+"psycopg2" = "*"
+gunicorn = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
+djangorestframework-stubs = "*"
+pandas = "*"
+Pillow = "*"
+django-cors-headers = "*"
+django-rest-swagger = "*"
+djangorestframework-word-filter="*"
+django-environ = "*"
+[dev-packages]
+
+tox = "*"
+ipython = "*"
+
+
+[requires]
+
+python_version = "3.6"

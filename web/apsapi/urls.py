@@ -33,6 +33,7 @@ router.register(r'api/ambientes', AmbientesViewSet)
 urlpatterns = [
                   path('', include(router.urls)),
                   path('api/docs', schema_view),
+                  path('api/doc', schema_view),
                   path('admin/', admin.site.urls),
                   path('api/modalidades/<slug:codesc>', ModalidadesPraticadas.as_view()),
                   path('api/totvagmatbyserie/<slug:codesc>', VagasMatriculasBySerie.as_view()),

@@ -9,22 +9,18 @@ from rest_framework.response import Response
 # Create your views here.
 
 
-class TotalServidoresAtuacaoEscola(APIView):
+class ServidoresAtuacaoEscola(APIView):
 
     def get(self, request, codesc, format=None):
         """
-        Endpoint que disponibiliza um totalizador de servidores e sua atuação por escola, conforme o Encontre uma escola do portalSME
+        Endpoint que disponibiliza os servidores e sua atuação por escola, conforme o Encontre uma escola do portalSME
         :param codesc: Codigo da escola
         """
         query = """
-                   select trim(dc_cargo_atual) area_de_atuacao, count(*) total
+                    select dc_cargo_atual,nm_nome
                     from servidores_servidores
-                    where cd_unidade_educacao_atual = '{}'
-                    group by dc_cargo_atual
-                    union all
-                    select 'TOTAL DE SERVIDORES' area_de_atuacao, count(*) total
-                    from servidores_servidores
-                    where cd_unidade_educacao_atual = '{}';""".format(codesc, codesc)
+                    where cd_unidade_educacao_atual='{}'
+                    group by dc_cargo_atual,nm_nome;""".format(codesc)
 
         cursor = connection.cursor()
         cursor.execute(query)

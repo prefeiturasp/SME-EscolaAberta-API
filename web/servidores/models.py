@@ -3,6 +3,8 @@ from django.db import models
 
 # Create your models here.
 class Servidores(models.Model):
+    rf = models.TextField(blank=True, null=True)
+    nm_nome = models.TextField(blank=True, null=True)
     cd_serv_sme = models.TextField(blank=True, null=True)
     mes_nasc = models.FloatField(blank=True, null=True)
     ano_nasc = models.FloatField(blank=True, null=True)

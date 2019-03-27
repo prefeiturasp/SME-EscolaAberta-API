@@ -4,7 +4,8 @@ from django.conf.urls import include
 from portal.views.alunos_por_serie_turno import AlunosSerieTurno
 from portal.views.ambientes import Ambientes
 from portal.views.modalidades import ModalidadesPraticadas
-from portal.views.total_servidores_atuacao import ServidoresAtuacaoEscola
+from portal.views.servidores_atuacao import ServidoresAtuacaoEscola
+from portal.views.total_servidores_atuacao import TotalServidoresAtuacaoEscola
 from portal.views.total_servidores_escolaridade import ServidoresEscolarizacao
 from portal.views.total_vagas_mat_serie import VagasMatriculasBySerie
 from portal.views.turmas_serie_turno import TurmasSerieTurno
@@ -38,7 +39,8 @@ urlpatterns = [
                   path('api/modalidades/<slug:codesc>', ModalidadesPraticadas.as_view()),
                   path('api/totvagmatbyserie/<slug:codesc>', VagasMatriculasBySerie.as_view()),
                   path('api/ambientesbyescola/<slug:codesc>', Ambientes.as_view()),
-                  path('api/totservatuacao/<slug:codesc>', ServidoresAtuacaoEscola.as_view()),
+                  path('api/servatuacao/<slug:codesc>', ServidoresAtuacaoEscola.as_view()),
+                  path('api/totservatuacao/<slug:codesc>', TotalServidoresAtuacaoEscola.as_view()),
                   path('api/totservescolarizacao/<slug:codesc>', ServidoresEscolarizacao.as_view()),
                   path('api/alunosserieturno/<slug:codesc>', AlunosSerieTurno.as_view()),
                   path('api/turmaserieturno/<slug:codesc>', TurmasSerieTurno.as_view()),

@@ -1,13 +1,3 @@
-# resources:
-# http://www.ameyalokare.com/docker/2017/09/20/nginx-flask-postgres-docker-compose.html
-# https://github.com/juggernaut/nginx-flask-postgres-docker-compose-example
-# https://serverfault.com/questions/783806/docker-how-to-django-uwsgi-gunicorn-nginx/787402
-# https://github.com/andrecp/django-tutorial-docker-nginx-postgres
-# https://github.com/realpython/dockerizing-django
-# http://ruddra.com/2016/08/14/docker-django-nginx-postgres/index.html
-# https://stackoverflow.com/questions/32180589/docker-how-to-expose-a-socket-over-a-port-for-a-django-application
-
-
 version: '3'
 
 services:
@@ -27,6 +17,8 @@ services:
 
   # web container, with django + gunicorn
   djangoapp:
+    #image:
+
     build: .
     restart: always
     environment:

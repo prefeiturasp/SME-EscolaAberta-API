@@ -7,11 +7,12 @@ try:
     from django.test.utils import get_runner
 
     if not os.environ.get('DJANGO_SETTINGS_MODULE'):
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "apsapi.settings")
+        print('Sem setting module')
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "web.apsapi.settings")
 
     try:
         import django
-        sys.path.append(abspath(join(dirname(__file__), 'apsapi')))
+        sys.path.append(abspath(join(dirname(__file__), 'web')))
         setup = django.setup
     except AttributeError:
         pass

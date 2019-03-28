@@ -17,7 +17,7 @@ class ServidoresAtuacaoEscola(APIView):
         :param codesc: Codigo da escola
         """
         query = """
-                    select dc_cargo_atual,nm_nome
+                    select trim(dc_cargo_atual) as dc_cargo_atual,trim(nm_nome) as nm_nome
                     from servidores_servidores
                     where cd_unidade_educacao_atual='{}'
                     group by dc_cargo_atual,nm_nome;""".format(codesc)

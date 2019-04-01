@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
-USE_X_FORWARDED_HOST = True
+# USE_X_FORWARDED_HOST = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

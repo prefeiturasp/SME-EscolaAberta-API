@@ -24,8 +24,8 @@ SECRET_KEY = '=fgi4v@h)k$qcrqiv=5t7pu-g(xsl4)4)xjxk_rgcem$ki^)^*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-# ALLOWED_HOSTS = ['pontos-tutisticos.herokuapp.com', 'localhost', '127.0.0.1', 'django.loc']
+ALLOWED_HOSTS = ['kuma.educacao.intranet/']
+# ALLOWED_HOSTS = ['', 'localhost', '127.0.0.1', 'django.loc']
 
 # Application definition
 

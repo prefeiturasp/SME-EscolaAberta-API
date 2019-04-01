@@ -25,25 +25,25 @@ from ambientes.api.viewsets import AmbientesViewSet
 schema_view = get_swagger_view(title='Escola Aberta API')
 
 router = routers.DefaultRouter()
-router.register(r'api/escolas', EscolasViewSet)
-router.register(r'api/turmas', TurmasViewSet)
-router.register(r'api/servidores', ServidoresViewSet)
-router.register(r'api/ambientes', AmbientesViewSet)
-# router.register('api/modalidades/<int:codesc>', ModalidadesPraticadas.as_view(), base_name='ModalidadeEnsino')
+router.register(r'escolas', EscolasViewSet)
+router.register(r'turmas', TurmasViewSet)
+router.register(r'servidores', ServidoresViewSet)
+router.register(r'ambientes', AmbientesViewSet)
+# router.register('modalidades/<int:codesc>', ModalidadesPraticadas.as_view(), base_name='ModalidadeEnsino')
 
 urlpatterns = [
-                  path('api/', include(router.urls)),
-                  path('api/docs', schema_view),
-                  path('api/doc', schema_view),
+                  path('', include(router.urls)),
+                  path('docs', schema_view),
+                  path('doc', schema_view),
                   path('admin/', admin.site.urls),
-                  path('api/modalidades/<slug:codesc>', ModalidadesPraticadas.as_view(), name='modalidades'),
-                  path('api/totvagmatbyserie/<slug:codesc>', VagasMatriculasBySerie.as_view(), name='totvagmatbyserie'),
-                  path('api/ambientesbyescola/<slug:codesc>', Ambientes.as_view(), name="ambientesbyescola"),
-                  path('api/servatuacao/<slug:codesc>', ServidoresAtuacaoEscola.as_view(), name="servatuacao"),
-                  path('api/totservatuacao/<slug:codesc>', TotalServidoresAtuacaoEscola.as_view(),
+                  path('modalidades/<slug:codesc>', ModalidadesPraticadas.as_view(), name='modalidades'),
+                  path('totvagmatbyserie/<slug:codesc>', VagasMatriculasBySerie.as_view(), name='totvagmatbyserie'),
+                  path('ambientesbyescola/<slug:codesc>', Ambientes.as_view(), name="ambientesbyescola"),
+                  path('servatuacao/<slug:codesc>', ServidoresAtuacaoEscola.as_view(), name="servatuacao"),
+                  path('totservatuacao/<slug:codesc>', TotalServidoresAtuacaoEscola.as_view(),
                        name="totservatuacao"),
-                  path('api/totservescolarizacao/<slug:codesc>', ServidoresEscolarizacao.as_view(),
+                  path('totservescolarizacao/<slug:codesc>', ServidoresEscolarizacao.as_view(),
                        name="totservescolarizacao"),
-                  path('api/alunosserieturno/<slug:codesc>', AlunosSerieTurno.as_view(), name="alunosserieturno"),
-                  path('api/turmaserieturno/<slug:codesc>', TurmasSerieTurno.as_view(), name="turmaserieturno"),
+                  path('alunosserieturno/<slug:codesc>', AlunosSerieTurno.as_view(), name="alunosserieturno"),
+                  path('turmaserieturno/<slug:codesc>', TurmasSerieTurno.as_view(), name="turmaserieturno"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

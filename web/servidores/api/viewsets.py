@@ -1,10 +1,8 @@
-from django.shortcuts import get_object_or_404
-from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
-from servidores.models import Servidores
-from .serializers import ServidoresSerializer
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters
 from rest_framework.response import Response
+from rest_framework.viewsets import ReadOnlyModelViewSet
+from servidores.models import Servidores
+
+from .serializers import ServidoresSerializer
 
 
 class ServidoresViewSet(ReadOnlyModelViewSet):

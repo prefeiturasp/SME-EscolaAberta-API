@@ -5,7 +5,6 @@ from servidores.models import Servidores
 class ServidoresSerializer(ModelSerializer):
     class Meta:
         model = Servidores
-        fields = (
-            '__all__'
-        )
+        exclude = ('rf',)
+
         filter_fields = ('cd_unidade_educacao_atual')

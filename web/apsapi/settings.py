@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'servidores',
     'alunos',
     'rest_framework_word_filter',
-    # 'corsheaders',
+    'corsheaders',
 ]
 
 # USE_X_FORWARDED_HOST = True
@@ -57,7 +57,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -158,28 +158,33 @@ REST_FRAMEWORK = {
 # #    ),
 # }
 
-#
+CORS_ORIGIN_ALLOW_ALL = True
+
 # CORS_ORIGIN_WHITELIST = (
-#     '*'
+#     'google.com',
+#     'hostname.example.com',
+#     'localhost:8084',
+#     '127.0.0.1:8084'
+#     ''
 # )
 
-# CORS_ALLOW_METHODS = (
-#     # 'DELETE',
-#     'GET',
-#     # 'OPTIONS',
-#     # 'PATCH',
-#     # 'POST',
-#     # 'PUT',
-# )
-# #
-# CORS_ALLOW_HEADERS = (
-#     'accept',
-#     'accept-encoding',
-#     'authorization',
-#     'content-type',
-#     'dnt',
-#     'origin',
-#     'user-agent',
-#     'x-csrftoken',
-#     'x-requested-with',
-# )
+CORS_ALLOW_METHODS = (
+    # 'DELETE',
+    'GET',
+    # 'OPTIONS',
+    # 'PATCH',
+    # 'POST',
+    # 'PUT',
+)
+
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+)

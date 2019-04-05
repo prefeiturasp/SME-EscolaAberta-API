@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'servidores',
     'alunos',
     'rest_framework_word_filter',
-    'corsheaders',
+    # 'corsheaders',
 ]
 
 # USE_X_FORWARDED_HOST = True
@@ -158,28 +158,28 @@ REST_FRAMEWORK = {
 # #    ),
 # }
 
+#
+# CORS_ORIGIN_WHITELIST = (
+#     '*'
+# )
 
-CORS_ORIGIN_WHITELIST = (
-    '*'
-)
-
-CORS_ALLOW_METHODS = (
-    # 'DELETE',
-    'GET',
-    # 'OPTIONS',
-    # 'PATCH',
-    # 'POST',
-    # 'PUT',
-)
-
-CORS_ALLOW_HEADERS = (
-    'accept',
-    'accept-encoding',
-    'authorization',
-    'content-type',
-    'dnt',
-    'origin',
-    'user-agent',
-    'x-csrftoken',
-    'x-requested-with',
-)
+# CORS_ALLOW_METHODS = (
+#     # 'DELETE',
+#     'GET',
+#     # 'OPTIONS',
+#     # 'PATCH',
+#     # 'POST',
+#     # 'PUT',
+# )
+# #
+# CORS_ALLOW_HEADERS = (
+#     'accept',
+#     'accept-encoding',
+#     'authorization',
+#     'content-type',
+#     'dnt',
+#     'origin',
+#     'user-agent',
+#     'x-csrftoken',
+#     'x-requested-with',
+# )

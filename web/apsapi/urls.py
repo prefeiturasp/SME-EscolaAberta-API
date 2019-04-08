@@ -3,8 +3,10 @@ from django.urls import path
 from django.conf.urls import include
 from portal.views.alunos_por_serie_turno import AlunosSerieTurno
 from portal.views.ambientes import Ambientes
+from portal.views.diretorias import DiretoriasView
 from portal.views.modalidades import ModalidadesPraticadas
 from portal.views.servidores_atuacao import ServidoresAtuacaoEscola
+from portal.views.tipo_escola import TipoEscolaView
 from portal.views.total_servidores_atuacao import TotalServidoresAtuacaoEscola
 from portal.views.total_servidores_escolaridade import ServidoresEscolarizacao
 from portal.views.total_vagas_mat_serie import VagasMatriculasBySerie
@@ -36,6 +38,8 @@ urlpatterns = [
                   path('docs', schema_view),
                   path('doc', schema_view),
                   path('admin/', admin.site.urls),
+                  path('tipo_escola/', TipoEscolaView.as_view(), name='tipo_escola'),
+                  path('diretorias/', DiretoriasView.as_view(), name='diretorias'),
                   path('modalidades/<slug:codesc>', ModalidadesPraticadas.as_view(), name='modalidades'),
                   path('totvagmatbyserie/<slug:codesc>', VagasMatriculasBySerie.as_view(), name='totvagmatbyserie'),
                   path('ambientesbyescola/<slug:codesc>', Ambientes.as_view(), name="ambientesbyescola"),

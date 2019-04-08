@@ -1,3 +1,4 @@
+import django_filters
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from escolas.models import Escolas
 from .serializers import EscolasSerializer
@@ -12,5 +13,6 @@ class EscolasViewSet(ReadOnlyModelViewSet):
     """
     queryset = Escolas.objects.all()
     serializer_class = EscolasSerializer
-    filter_backends = (filters.SearchFilter,)
+    filter_backends = (filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend,)
     search_fields = ('nomesc',)
+    filterset_fields = ('dre', 'tipoesc')

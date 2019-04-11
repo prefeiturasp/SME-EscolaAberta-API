@@ -11,7 +11,7 @@ class EscolasViewSet(ReadOnlyModelViewSet):
     Endpoint responsável por retornar todas as escolas,
     filtrar pro Codigo da escola ou realizar pesquisa por nome da escola
     """
-    queryset = Escolas.objects.all()
+    queryset = Escolas.objects.exclude(tipoesc='ESC.PART.')
     serializer_class = EscolasSerializer
     filter_backends = (filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend,)
     search_fields = ('nomesc',)

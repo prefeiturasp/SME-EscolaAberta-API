@@ -15,4 +15,4 @@ class EscolasViewSet(ReadOnlyModelViewSet):
     serializer_class = EscolasSerializer
     filter_backends = (filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend,)
     search_fields = ('nomesc',)
-    filterset_fields = ('dre', 'tipoesc')
+    filterset_fields = ('dre', 'tipoesc','distrito','bairro')

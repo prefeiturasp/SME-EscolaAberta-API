@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 # -----------------------------------------------------------------------------------
 
-from escolas.api.viewsets import EscolasViewSet
+from escolas.api.viewsets import EscolasViewSet, BairrosViewSet, DistritoViewSet
 from turmas.api.viewsets import TurmasViewSet
 from servidores.api.viewsets import ServidoresViewSet
 from ambientes.api.viewsets import AmbientesViewSet
@@ -28,6 +28,8 @@ schema_view = get_swagger_view(title='Escola Aberta API')
 
 router = routers.DefaultRouter()
 router.register(r'escolas', EscolasViewSet)
+router.register(r'bairros', BairrosViewSet)
+router.register(r'distritos', DistritoViewSet)
 router.register(r'turmas', TurmasViewSet)
 router.register(r'servidores', ServidoresViewSet)
 router.register(r'ambientes', AmbientesViewSet)

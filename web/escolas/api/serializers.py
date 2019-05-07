@@ -9,3 +9,16 @@ class EscolasSerializer(ModelSerializer):
             '__all__'
         )
         filter_fields = ('cdesc')
+
+
+class BairroSerializer(ModelSerializer):
+    class Meta:
+        model = Escolas
+        fields = ('bairro',)
+        filter_fields = ('bairro',)
+
+class DistritoSerializer(ModelSerializer):
+    class Meta:
+        model = Escolas
+        fields = ('distrito',)
+        filter_fields = ('distrito',)

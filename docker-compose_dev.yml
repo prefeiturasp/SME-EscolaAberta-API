@@ -1,0 +1,66 @@
+version: '3'
+
+services:
+
+  # database containers, one for each db
+  db:
+    image: postgres:11.1
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    env_file:
+      - .env/database
+#      - config/db/database
+    networks:
+      - database
+    ports:
+      - "5432:5432"
+
+  # web container, with django + gunicorn
+  djangoapp:
+    #image:
+
+    build: .
+    restart: always
+    environment:
+      - DJANGO_SETTINGS_MODULE
+    volumes:
+      - .:/opt/services/djangoapp/src
+      - static:/opt/services/djangoapp/static
+      - media:/opt/services/djangoapp/media
+    env_file:
+      - .env/database
+    networks:
+      - database
+      - nginx_network
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+
+  # reverse proxy container (nginx)
+  nginx:
+    image: nginx:1.13
+    ports:
+      - 80:80
+    
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - static:/opt/services/djangoapp/static
+      - media:/opt/services/djangoapp/media
+
+    networks:
+      - nginx_network
+    depends_on:
+      - djangoapp
+      - db
+
+networks:
+  database:
+    driver: bridge
+  nginx_network:
+    driver: bridge
+
+volumes:
+  db_data:
+  static:
+  media:

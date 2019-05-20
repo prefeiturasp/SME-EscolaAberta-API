@@ -13,7 +13,8 @@ class TipoEscolaView(APIView):
         Endpoint que retorna os tipos de escola
         """
         query = """
-        select tipoesc from escolas_escolas group by tipoesc;"""
+        select tipoesc from escolas_escolas group by tipoesc
+         having tipoesc!='ESC.PART.';"""
 
         cursor = connection.cursor()
         cursor.execute(query)

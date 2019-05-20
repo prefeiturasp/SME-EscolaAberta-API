@@ -11,6 +11,7 @@ RUN pip install pipenv && pipenv install --system
 #COPY requirements.txt /opt/services/djangoapp/src/requirements.txt
 #RUN pip install -r requirements.txt
 
+#COPY . /opt/services/djangoapp/src
 COPY . /opt/services/djangoapp/src
 RUN cd web && python manage.py collectstatic --no-input
 #RUN cd web && python manage.py migrate

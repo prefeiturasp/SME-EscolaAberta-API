@@ -4,6 +4,7 @@ from django.conf.urls import include
 from portal.views.alunos_por_serie_turno import AlunosSerieTurno
 from portal.views.ambientes import Ambientes
 from portal.views.diretorias import DiretoriasView
+from portal.views.localizador_escola import LocalizadorEscola
 from portal.views.modalidades import ModalidadesPraticadas
 from portal.views.servidores_atuacao import ServidoresAtuacaoEscola
 from portal.views.tipo_escola import TipoEscolaView
@@ -52,4 +53,5 @@ urlpatterns = [
                        name="totservescolarizacao"),
                   path('alunosserieturno/<slug:codesc>', AlunosSerieTurno.as_view(), name="alunosserieturno"),
                   path('turmaserieturno/<slug:codesc>', TurmasSerieTurno.as_view(), name="turmaserieturno"),
+                  path('localizador', LocalizadorEscola.as_view(), name="localizadorescolas"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

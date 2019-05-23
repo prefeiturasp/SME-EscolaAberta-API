@@ -25,11 +25,33 @@ class LocalizadorEscola(APIView):
         :param top: numero de escolas para retornar
         """
 
-
         lat = request.GET.get('lat', None)
         lon = request.GET.get('lon', None)
         radius = request.GET.get('radius', None)
         top = request.GET.get('top', 10)
+
+        # Filtros
+        extra_filters = ''
+
+        nomesc = request.GET.get('nomesc')
+        if nomesc:
+            extra_filters = extra_filters + f" and nomesc like '%{nomesc}%'"
+
+        tipoesc = request.GET.get('tipoesc')
+        if tipoesc:
+            extra_filters = extra_filters + f" and tipoesc like '%{tipoesc}%'"
+
+        dre = request.GET.get('dre')
+        if dre:
+            extra_filters = extra_filters + f" and dre like '%{dre}%'"
+
+        bairro = request.GET.get('bairro')
+        if bairro:
+            extra_filters = extra_filters + f" and bairro like '%{bairro}%'"
+
+        distrito = request.GET.get('distrito')
+        if distrito:
+            extra_filters = extra_filters + f" and distrito like '%{distrito}%'"
 
         if is_number(lat) and is_number(lon) and is_number(radius) and is_number(top):
             pass
@@ -75,6 +97,7 @@ FROM (
          ORDER BY distance_in_km
          LIMIT {top}) as distancias
 where distancias.distance_in_km <= {radius}
+""" + extra_filters + """
   and distancias.tipoesc != 'ESC.PART.';
                     """
 

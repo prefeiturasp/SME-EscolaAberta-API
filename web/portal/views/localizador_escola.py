@@ -25,6 +25,7 @@ class LocalizadorEscola(APIView):
         :param top: numero de escolas para retornar
         """
 
+
         lat = request.GET.get('lat', None)
         lon = request.GET.get('lon', None)
         radius = request.GET.get('radius', None)
@@ -37,22 +38,44 @@ class LocalizadorEscola(APIView):
 
         # https://pt.wikipedia.org/wiki/F%C3%B3rmula_de_Haversine
         # https://www.plumislandmedia.net/mysql/haversine-mysql-nearest-loc/
-        query = f"""SELECT * FROM (
-SELECT codesc,
-       tipoesc,
-       nomesc,
-       endereco,
-       latitude,
-       longitude,
-       111.045 * DEGREES(ACOS(COS(RADIANS({lat}))--lat
-                                  * COS(RADIANS(latitude))
-                                  * COS(RADIANS(longitude) - RADIANS({lon}))--lon
-           + SIN(RADIANS({lat}))--lat
-                                  * SIN(RADIANS(latitude))))
-           AS distance_in_km
-FROM escolas_escolas
-ORDER BY distance_in_km
-LIMIT {top}) as distancias where distancias.distance_in_km <= {radius} and distancias.tipoesc!='ESC.PART.';
+        query = f"""SELECT *
+FROM (
+         SELECT dre,
+                codesc,
+                tipoesc,
+                nomesc,
+                ceu,
+                diretoria,
+                subpref,
+                endereco,
+                numero,
+                bairro,
+                cep,
+                tel1,
+                tel2,
+                fax,
+                situacao,
+                coddist,
+                distrito,
+                setor,
+                codinep,
+                cd_cie,
+                eh,
+                fx_etaria,
+                rede,
+                latitude,
+                longitude,
+                111.045 * DEGREES(ACOS(COS(RADIANS({lat}))--lat
+                                           * COS(RADIANS(latitude))
+                                           * COS(RADIANS(longitude) - RADIANS({lon}))--lon
+                    + SIN(RADIANS({lat}))--lat
+                                           * SIN(RADIANS(latitude))))
+                    AS distance_in_km
+         FROM escolas_escolas
+         ORDER BY distance_in_km
+         LIMIT {top}) as distancias
+where distancias.distance_in_km <= {radius}
+  and distancias.tipoesc != 'ESC.PART.';
                     """
 
         cursor = connection.cursor()

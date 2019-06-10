@@ -16,7 +16,5 @@ COPY . /opt/services/djangoapp/src
 RUN cd web && python manage.py collectstatic --no-input
 #RUN cd web && python manage.py migrate
 
-
 EXPOSE 80
 CMD ["gunicorn", "-c", "config/gunicorn/conf.py", "--bind", ":8000", "--chdir", "web", "apsapi.wsgi:application"]
-

@@ -22,3 +22,9 @@ class DistritoSerializer(ModelSerializer):
         model = Escolas
         fields = ('distrito',)
         filter_fields = ('distrito',)
+
+class SubprefSerializer(ModelSerializer):
+    class Meta:
+        model = Escolas
+        fields = ('subpref',)
+        filter_fields = ('subpref',)

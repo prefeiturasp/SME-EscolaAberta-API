@@ -1,7 +1,7 @@
 import django_filters
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from escolas.models import Escolas
-from .serializers import EscolasSerializer, BairroSerializer, DistritoSerializer
+from .serializers import EscolasSerializer, BairroSerializer, DistritoSerializer, SubprefSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 
@@ -40,3 +40,15 @@ class DistritoViewSet(ReadOnlyModelViewSet):
     filter_backends = (filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend,)
     search_fields = ('distrito',)
     filterset_fields = ('distrito',)
+
+
+class SubprefViewSet(ReadOnlyModelViewSet):
+    """
+    Endpoint responsável por retornar todas os bairros,
+    filtrar pelo nome do bairros
+    """
+    queryset = Escolas.objects.distinct('subpref')
+    serializer_class = SubprefSerializer
+    filter_backends = (filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend,)
+    search_fields = ('subpref',)
+    filterset_fields = ('subpref',)

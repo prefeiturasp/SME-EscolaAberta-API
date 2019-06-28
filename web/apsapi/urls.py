@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 # -----------------------------------------------------------------------------------
 
-from escolas.api.viewsets import EscolasViewSet, BairrosViewSet, DistritoViewSet
+from escolas.api.viewsets import EscolasViewSet, BairrosViewSet, DistritoViewSet, SubprefViewSet
 from turmas.api.viewsets import TurmasViewSet
 from servidores.api.viewsets import ServidoresViewSet
 from ambientes.api.viewsets import AmbientesViewSet
@@ -31,6 +31,7 @@ router = routers.DefaultRouter()
 router.register(r'escolas', EscolasViewSet)
 router.register(r'bairros', BairrosViewSet)
 router.register(r'distritos', DistritoViewSet)
+router.register(r'subpref', SubprefViewSet)
 router.register(r'turmas', TurmasViewSet)
 router.register(r'servidores', ServidoresViewSet)
 router.register(r'ambientes', AmbientesViewSet)

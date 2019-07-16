@@ -21,7 +21,7 @@ class Ambientes(APIView):
                     from ambientes_ambientesunidadesedu
                     where codesc = '{}'
                       and flag_ut = 'S'
-                      and descamb not null
+                      and descamb notnull
                     group by descamb;""".format(codesc)
 
         cursor = connection.cursor()

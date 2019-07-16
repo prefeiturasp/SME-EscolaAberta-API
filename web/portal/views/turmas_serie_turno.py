@@ -25,7 +25,7 @@ class TurmasSerieTurno(APIView):
                      else 'Não Informado' end as turno
             from turmas_turmas
             where codesc = '{}'
-            group by descserie, turno;""".format(codesc)
+            group by turma,descserie, turno;""".format(codesc)
 
         cursor = connection.cursor()
         cursor.execute(query)

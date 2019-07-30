@@ -1,9 +1,6 @@
-from django.shortcuts import render
-from escolas.models import Escolas
-from turmas.models import Turmas
-from rest_framework.views import APIView
 from django.db import connection
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 # Create your views here.

@@ -8,7 +8,9 @@ from portal.views.localizador_escola import LocalizadorEscola
 from portal.views.modalidades import ModalidadesPraticadas
 from portal.views.serie_estudantes import SerieEstudantes
 from portal.views.servidores_atuacao import ServidoresAtuacaoEscola
+from portal.views.sme_ambientes import SmeAmbientes
 from portal.views.sme_escolas import SmeEscolasPorTipo
+from portal.views.sme_profissionais import SmeProfissionais
 from portal.views.tipo_escola import TipoEscolaView
 from portal.views.total_servidores_atuacao import TotalServidoresAtuacaoEscola
 from portal.views.total_servidores_escolaridade import ServidoresEscolarizacao
@@ -57,8 +59,15 @@ urlpatterns = [
                   path('alunosserieturno/<slug:codesc>', AlunosSerieTurno.as_view(), name="alunosserieturno"),
                   path('turmaserieturno/<slug:codesc>', TurmasSerieTurno.as_view(), name="turmaserieturno"),
                   path('seriesestudantes/<slug:codesc>', SerieEstudantes.as_view(), name="serieestudantes"),
+
                   path('smeescolas/<slug:cod_dre>', SmeEscolasPorTipo.as_view(), name="smeescolas_dre"),
                   path('smeescolas/', SmeEscolasPorTipo.as_view(), name="smeescolas"),
+
+                  path('smeprofissionais/<slug:cod_dre>', SmeProfissionais.as_view(), name="smeescolas_dre"),
+                  path('smeprofissionais/', SmeProfissionais.as_view(), name="smeescolas"),
+
+                  path('smeambientes/<slug:cod_dre>', SmeAmbientes.as_view(), name="smeescolas_dre"),
+                  path('smeambientes/', SmeAmbientes.as_view(), name="smeescolas"),
 
                   path('localizador', LocalizadorEscola.as_view(), name="localizadorescolas"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

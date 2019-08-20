@@ -29,7 +29,7 @@ from turmas.api.viewsets import TurmasViewSet
 from servidores.api.viewsets import ServidoresViewSet
 from ambientes.api.viewsets import AmbientesViewSet
 
-schema_view = get_swagger_view(title='Escola Aberta API')
+schema_view = get_swagger_view(title='Escola Aberta API', url='/api/')
 
 router = routers.DefaultRouter()
 router.register(r'escolas', EscolasViewSet)

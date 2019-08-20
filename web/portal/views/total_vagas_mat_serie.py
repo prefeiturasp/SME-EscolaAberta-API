@@ -14,23 +14,28 @@ class VagasMatriculasBySerie(APIView):
         :param codesc: Codigo da escola
         """
         query = """
-select turma.descserie as serie,
+select turma.descserie            as serie,
        count(*)                   as total_turmas,
        sum(vagofer)               as vagas_oferecidas,
        sum(matric)                as atendimentos,
        sum(vagofer) - sum(matric) as vagas_remanecentes,
        round(avg(matric))         as media_atendimento
 from turmas_turmas as turma
+where cdserie notnull
+  and modal notnull
 group by turma.modal, turma.codesc, turma.descserie
 having turma.codesc = '{}'
 union all
-select turma.modal as serie,
+select turma.modal                as serie,
        count(*)                   as total_turmas,
        sum(vagofer)               as vagas_oferecidas,
        sum(matric)                as atendimentos,
        sum(vagofer) - sum(matric) as vagas_remanecentes,
        round(avg(matric))         as media_atendimento
 from turmas_turmas as turma
+where cdserie notnull
+  and cdserie notnull
+  and modal notnull
 group by turma.modal, turma.codesc
 having turma.codesc = '{}';""".format(codesc, codesc)
 

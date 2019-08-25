@@ -19,8 +19,9 @@ class ModalidadesPraticadas(APIView):
         query = """
         select turma.modal
         from turmas_turmas as turma
+        where cdserie notnull and turma.codesc='{}'
         group by turma.modal, turma.codesc
-        having turma.codesc='{}'""".format(codesc)
+         """.format(codesc)
 
         cursor = connection.cursor()
         cursor.execute(query)

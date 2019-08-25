@@ -4,6 +4,7 @@ from django.conf.urls import include
 from portal.views.alunos_por_serie_turno import AlunosSerieTurno
 from portal.views.ambientes import Ambientes
 from portal.views.diretorias import DiretoriasView
+from portal.views.livro_aberto_escolas import LivroAbertoEscolas
 from portal.views.localizador_escola import LocalizadorEscola
 from portal.views.modalidades import ModalidadesPraticadas
 from portal.views.serie_estudantes import SerieEstudantes
@@ -70,4 +71,10 @@ urlpatterns = [
                   path('smeambientes/', SmeAmbientes.as_view(), name="smeescolas"),
 
                   path('localizador', LocalizadorEscola.as_view(), name="localizadorescolas"),
+
+
+    #Livro Aberto Endpoints
+                  path('livroaberto_escolas/', LivroAbertoEscolas.as_view(), name="livroaberta_escolas"),
+
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

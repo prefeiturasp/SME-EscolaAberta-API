@@ -13,7 +13,8 @@ class ServidoresAtuacaoEscola(APIView):
 
     def get(self, request, codesc, format=None):
         """
-        Endpoint que disponibiliza os servidores e sua atuação por escola, conforme o Encontre uma escola do portalSME
+        Endpoint que disponibiliza os servidores e sua atuação por escola,
+         conforme o Encontre uma escola do portalSME
         :param codesc: Codigo da escola
         """
         query = """

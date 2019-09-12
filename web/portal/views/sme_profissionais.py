@@ -17,7 +17,7 @@ class SmeProfissionais(APIView):
 select trim(dc_cargo_atual) titulo, trim(nivel_form) formacao, count(*) total
 from servidores_servidores
 where nivel_form notnull
-and sigla_atual = '{}'
+and trim(sigla_atual) = '{}'
 group by nivel_form, dc_cargo_atual; --
             """.format(cod_dre)
 

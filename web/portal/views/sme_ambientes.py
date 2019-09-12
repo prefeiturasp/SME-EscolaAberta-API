@@ -18,7 +18,7 @@ select trim(descamb) as ambiente, count(*) as total
 from ambientes_ambientesunidadesedu
 where flag_ut = 'S'
   and descamb notnull
-and dre like 'DRE - {}'
+and trim(dre) like 'DRE - {}'
 group by descamb;
             """.format(cod_dre)
 

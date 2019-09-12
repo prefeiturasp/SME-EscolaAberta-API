@@ -31,7 +31,7 @@ from (
                       tipoesc,
                       sum(matric) mat
                from turmas_turmas
-               where dre='{}'
+               where trim(dre)='{}'
                group by dre, codesc
                       , tipoesc) table_mat
      ) as bucket_table

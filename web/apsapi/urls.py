@@ -12,6 +12,7 @@ from portal.views.servidores_atuacao import ServidoresAtuacaoEscola
 from portal.views.sme_ambientes import SmeAmbientes
 from portal.views.sme_escolas import SmeEscolasPorTipo
 from portal.views.sme_profissionais import SmeProfissionais
+from portal.views.sme_vagas_matriculas import SmeVagasMatriculas
 from portal.views.tipo_escola import TipoEscolaView
 from portal.views.total_servidores_atuacao import TotalServidoresAtuacaoEscola
 from portal.views.total_servidores_escolaridade import ServidoresEscolarizacao
@@ -64,17 +65,18 @@ urlpatterns = [
                   path('smeescolas/<slug:cod_dre>', SmeEscolasPorTipo.as_view(), name="smeescolas_dre"),
                   path('smeescolas/', SmeEscolasPorTipo.as_view(), name="smeescolas"),
 
-                  path('smeprofissionais/<slug:cod_dre>', SmeProfissionais.as_view(), name="smeescolas_dre"),
-                  path('smeprofissionais/', SmeProfissionais.as_view(), name="smeescolas"),
+                  path('smeprofissionais/<slug:cod_dre>', SmeProfissionais.as_view(), name="smeprofissionais_dre"),
+                  path('smeprofissionais/', SmeProfissionais.as_view(), name="smeprofissionais"),
 
-                  path('smeambientes/<slug:cod_dre>', SmeAmbientes.as_view(), name="smeescolas_dre"),
-                  path('smeambientes/', SmeAmbientes.as_view(), name="smeescolas"),
+                  path('smeambientes/<slug:cod_dre>', SmeAmbientes.as_view(), name="smeambientes_dre"),
+                  path('smeambientes/', SmeAmbientes.as_view(), name="smeambientes"),
+
+                  path('smevagasmat/<slug:cod_dre>', SmeVagasMatriculas.as_view(), name="smevagasmat_dre"),
+                  path('smevagasmat/', SmeVagasMatriculas.as_view(), name="smevagasmat"),
 
                   path('localizador', LocalizadorEscola.as_view(), name="localizadorescolas"),
 
-
-    #Livro Aberto Endpoints
+                  # Livro Aberto Endpoints
                   path('livroaberto_escolas/', LivroAbertoEscolas.as_view(), name="livroaberta_escolas"),
-
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -8,7 +8,8 @@ class EscolasSerializer(ModelSerializer):
         fields = (
             '__all__'
         )
-        filter_fields = ('cdesc')
+        # filter_fields = ('cdesc')
+        filter_fields = ('codesc')
 
 
 class BairroSerializer(ModelSerializer):

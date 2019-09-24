@@ -32,8 +32,8 @@ class BairrosViewSet(ReadOnlyModelViewSet):
 
 class DistritoViewSet(ReadOnlyModelViewSet):
     """
-    Endpoint responsável por retornar todas os bairros,
-    filtrar pelo nome do bairros
+    Endpoint responsável por retornar todas os distritos,
+    filtrar pelo nome do distritos
     """
     queryset = Escolas.objects.distinct('distrito')
     serializer_class = DistritoSerializer
@@ -44,8 +44,8 @@ class DistritoViewSet(ReadOnlyModelViewSet):
 
 class SubprefViewSet(ReadOnlyModelViewSet):
     """
-    Endpoint responsável por retornar todas os bairros,
-    filtrar pelo nome do bairros
+    Endpoint responsável por retornar todas os subprefeituras,
+    filtrar pelo nome do subprefeituras
     """
     queryset = Escolas.objects.distinct('subpref')
     serializer_class = SubprefSerializer

@@ -25,6 +25,7 @@ from (
                     when (mat >= 1001) and (mat <= 1500) then '1001 a 1500 estudantes'
                     when (mat >= 1501) and (mat <= 2000) then '1501 a 2000 estudantes'
                     when (mat >= 2001) and (mat <= 2500) then '2001 a 2500 estudantes'
+                    else 'Mais que 2500 estudantes'
                     END as faixa
          from (select dre,
                       codesc,
@@ -51,6 +52,7 @@ from (
                     when (mat >= 1001) and (mat <= 1500) then '1001 a 1500 estudantes'
                     when (mat >= 1501) and (mat <= 2000) then '1501 a 2000 estudantes'
                     when (mat >= 2001) and (mat <= 2500) then '2001 a 2500 estudantes'
+                    else 'Mais que 2500 estudantes'
                     END as faixa
          from (select
                       codesc,

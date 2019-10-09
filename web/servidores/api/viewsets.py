@@ -15,6 +15,6 @@ class ServidoresViewSet(ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         cd_esc = str(kwargs.get('codesc', None))
-        queryset = Servidores.objects.filter(cd_unidade_educacao_atual=cd_esc).distinct()
+        queryset = Servidores.objects.filter(cd_unidade_educacao_atual=cd_esc).distinct('nm_nome')
         serializer = ServidoresSerializer(queryset, many=True)
         return Response(serializer.data)

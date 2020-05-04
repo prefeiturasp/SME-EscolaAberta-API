@@ -41,3 +41,18 @@ class Escolas(models.Model):
 
     def __str__(self):
         return str(self.codesc) + '-' + str(self.nomesc)
+
+
+class Ceus(models.Model):
+    cd_unidade = models.TextField(blank=True, null=True)
+    nm_unidade = models.TextField(blank=True, null=True)
+    nm_exibicao_unidade = models.TextField(blank=True, null=True)
+    tp_unidade_administrativa = models.IntegerField(blank=True, null=True)
+    dc_tipo_unidade_administrativa = models.TextField(blank=True, null=True)
+    sg_unidade_administrativa = models.TextField(blank=True, null=True)
+    cd_unidade_administrativa = models.TextField(blank=True, null=True)
+    nm_unidade_administrativa = models.TextField(blank=True, null=True)
+    database = models.TextField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'escolas_ceus'

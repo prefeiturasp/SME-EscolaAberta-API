@@ -1,7 +1,8 @@
 import django_filters
+from escolas.filters import CeuFilter
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
-from escolas.models import Escolas
-from .serializers import EscolasSerializer, BairroSerializer, DistritoSerializer, SubprefSerializer
+from escolas.models import Escolas, Ceus
+from .serializers import EscolasSerializer, BairroSerializer, DistritoSerializer, SubprefSerializer, CeuSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 
@@ -52,3 +53,9 @@ class SubprefViewSet(ReadOnlyModelViewSet):
     filter_backends = (filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend,)
     search_fields = ('subpref',)
     filterset_fields = ('subpref',)
+
+
+class CeuViewSet(ReadOnlyModelViewSet):
+    queryset = Ceus.objects.all()
+    serializer_class = CeuSerializer
+    filterset_class = CeuFilter

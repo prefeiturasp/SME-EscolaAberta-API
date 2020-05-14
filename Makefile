@@ -13,6 +13,12 @@ run:
 migrate:
 	$(COMMAND) "python web/manage.py migrate"
 
+makemigrations:
+	$(COMMAND) "python web/manage.py makemigrations"
+
+inspect:
+	$(COMMAND) "python web/manage.py inspectdb > modelos.py"
+
 check: checksafety checkstyle
 
 test:

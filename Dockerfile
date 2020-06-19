@@ -3,13 +3,13 @@ FROM python:3.6
 ENV PYTHONUNBUFFERED 1
 RUN mkdir -p /opt/services/djangoapp/src
 
-COPY Pipfile Pipfile.lock /opt/services/djangoapp/src/
+#COPY Pipfile Pipfile.lock /opt/services/djangoapp/src/
 WORKDIR /opt/services/djangoapp/src
-RUN pip install pipenv && pipenv install --system
+#RUN pip install pipenv && pipenv install --system
 
 # Add requirements.txt to the image
-#COPY requirements.txt /opt/services/djangoapp/src/requirements.txt
-#RUN pip install -r requirements.txt
+COPY requirements.txt /opt/services/djangoapp/src/requirements.txt
+RUN pip install -r requirements.txt
 
 #COPY . /opt/services/djangoapp/src
 COPY . /opt/services/djangoapp/src

@@ -8,6 +8,7 @@ class Escolas(models.Model):
     codesc = models.CharField(max_length=6, primary_key=True)
     tipoesc = models.CharField(max_length=12, blank=True, null=True)
     nomesc = models.CharField(max_length=60, blank=True, null=True)
+    nomescofi = models.CharField(max_length=60, blank=True, null=True)
     ceu = models.TextField(blank=True, null=True)
     diretoria = models.CharField(max_length=60, blank=True, null=True)
     subpref = models.CharField(max_length=35, blank=True, null=True)

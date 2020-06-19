@@ -15,7 +15,7 @@ class EscolasViewSet(ReadOnlyModelViewSet):
     queryset = Escolas.objects.exclude(tipoesc='ESC.PART.').order_by('codesc')
     serializer_class = EscolasSerializer
     filter_backends = (filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend,)
-    search_fields = ('nomesc',)
+    search_fields = ('nomesc', 'nomescofi')
     filterset_fields = ('dre', 'tipoesc', 'distrito', 'bairro', 'subpref')
 
 

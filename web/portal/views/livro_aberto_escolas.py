@@ -14,18 +14,27 @@ class LivroAbertoEscolas(APIView):
         das escolas com quantidade de vagas oferecidas
         """
         query = """
-        select escolas.*,
-       turmas.total_vagas
-from escolas_escolas as escolas
-
-         inner join (select codesc, sum(vagofer) total_vagas
-                     from turmas_turmas as turmas
-                     where cdserie notnull and escolarizacao='S' and matric notnull
-                     group by codesc) turmas
-                    on turmas.codesc = escolas.codesc
-where tipoesc != 'ESC.PART.'
-  and situacao = 'ATIVA';
-        """
+                select escolas.*,
+                    turmas.total_vagas,
+                    servidores.total_servidores,
+                    turmas.total_matriculados
+                from escolas_escolas as escolas
+                    inner join (select codesc,
+                                        sum(vagofer) total_vagas,
+                                        sum(matric) as total_matriculados
+                                from turmas_turmas as turmas
+                                where cdserie notnull
+                                    and escolarizacao = 'S'
+                                    and matric notnull
+                                group by codesc) turmas
+                                on turmas.codesc = escolas.codesc
+                    left join (select   count(cd_serv_sme) as total_servidores,
+                                        cd_unidade_educacao_atual
+                                from servidores_servidores ss
+                                group by cd_unidade_educacao_atual) servidores
+                                on escolas.codesc = servidores.cd_unidade_educacao_atual
+                where tipoesc != 'ESC.PART.' and situacao = 'ATIVA';
+                """
 
         cursor = connection.cursor()
         cursor.execute(query)

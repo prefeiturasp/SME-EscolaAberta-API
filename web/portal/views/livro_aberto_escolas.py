@@ -33,7 +33,7 @@ class LivroAbertoEscolas(APIView):
                                 from servidores_servidores ss
                                 group by cd_unidade_educacao_atual) servidores
                                 on escolas.codesc = servidores.cd_unidade_educacao_atual
-                where tipoesc != 'ESC.PART.' and situacao = 'ATIVA';
+                where tipoesc != 'ESC.PART.';
                 """
 
         cursor = connection.cursor()

@@ -16,8 +16,8 @@ class LivroAbertoEscolas(APIView):
         query = """
                 select escolas.*,
                     turmas.total_vagas,
-                    servidores.total_servidores,
-                    turmas.total_matriculados
+                    coalesce(servidores.total_servidores, 0) as total_servidores,
+                    coalesce(turmas.total_matriculados, 0) as total_matriculados
                 from escolas_escolas as escolas
                     inner join (select codesc,
                                         sum(vagofer) total_vagas,

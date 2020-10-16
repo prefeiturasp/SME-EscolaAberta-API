@@ -5,7 +5,7 @@ from portal.views.alunos_por_serie_turno import AlunosSerieTurno
 from portal.views.ambientes import Ambientes
 from portal.views.diretorias import DiretoriasView
 from portal.views.dt_atualizacao import DtAtualizacaoView
-from portal.views.livro_aberto_escolas import LivroAbertoEscolas, LivroAbertoEscolasViewSet
+from portal.views.livro_aberto_escolas import LivroAbertoEscolas, LivroAbertoModelViewSet
 from portal.views.localizador_escola import LocalizadorEscola
 from portal.views.modalidades import ModalidadesPraticadas
 from portal.views.serie_estudantes import SerieEstudantes
@@ -43,7 +43,7 @@ router.register(r'subpref', SubprefViewSet)
 router.register(r'turmas', TurmasViewSet)
 router.register(r'servidores', ServidoresViewSet)
 router.register(r'ambientes', AmbientesViewSet)
-router.register(r'livro_aberto_escola_aberta', LivroAbertoEscolasViewSet)
+router.register('livroaberto-escolaaberta', LivroAbertoModelViewSet, 'livroaberto-escolaaberta')
 # router.register('modalidades/<int:codesc>', ModalidadesPraticadas.as_view(), base_name='ModalidadeEnsino')
 
 urlpatterns = [

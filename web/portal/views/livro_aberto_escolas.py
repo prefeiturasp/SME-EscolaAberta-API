@@ -1,6 +1,8 @@
 from django.db import connection
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import viewsets
+from rest_framework.decorators import action
 
 
 # Create your views here.
@@ -16,8 +18,8 @@ class LivroAbertoEscolas(APIView):
         query = """
                 select escolas.*,
                     turmas.total_vagas,
-                    servidores.total_servidores,
-                    turmas.total_matriculados
+                    coalesce(servidores.total_servidores, 0) as total_servidores,
+                    coalesce(turmas.total_matriculados, 0) as total_matriculados
                 from escolas_escolas as escolas
                     inner join (select codesc,
                                         sum(vagofer) total_vagas,
@@ -33,7 +35,7 @@ class LivroAbertoEscolas(APIView):
                                 from servidores_servidores ss
                                 group by cd_unidade_educacao_atual) servidores
                                 on escolas.codesc = servidores.cd_unidade_educacao_atual
-                where tipoesc != 'ESC.PART.' and situacao = 'ATIVA';
+                where tipoesc != 'ESC.PART.';
                 """
 
         cursor = connection.cursor()
@@ -42,3 +44,27 @@ class LivroAbertoEscolas(APIView):
                        [dict(zip([column[0] for column in cursor.description], row))
                         for row in cursor.fetchall()]}
         return Response(escolas)
+
+
+class LivroAbertoEscolasViewSet(viewsets.ModelViewSet):
+
+    @action(detail=False, url_path='ano-atual', methods=['GET'])
+    def ano_atual(self, request):
+        return Response({
+            'status': 200,
+            'results': 'ANO ATUAL'
+        })
+
+    @action(detail=False, url_path='2018', methods=['GET'])
+    def ano_de_2018(self, request):
+        return Response({
+            'status': 200,
+            'results': 'ANO 2018'
+        })
+
+    @action(detail=False, url_path='2019', methods=['GET'])
+    def ano_de_2019(self, request):
+        return Response({
+            'status': 200,
+            'results': 'ANO 2019'
+        })

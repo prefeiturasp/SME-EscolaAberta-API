@@ -7,12 +7,6 @@ from rest_framework.decorators import action
 
 # Create your views here.
 
-class LivroAbertoBaseModelViewSet(viewsets.ModelViewSet):
-
-    def get_queryset(self):
-        queryset = super(LivroAbertoBaseModelViewSet, self).get_queryset()
-        return queryset.none()
-
 
 class LivroAbertoEscolas(APIView):
 
@@ -52,7 +46,12 @@ class LivroAbertoEscolas(APIView):
         return Response(escolas)
 
 
-class LivroAbertoModelViewSet(LivroAbertoBaseModelViewSet):
+class LivroAbertoModelViewSet(viewsets.ModelViewSet):
+
+    def get_queryset(self):
+        queryset = super(LivroAbertoModelViewSet, self).get_queryset()
+        queryset = queryset.none()
+        return queryset
 
     @action(detail=False, url_path='ano-atual', methods=['GET'])
     def ano_atual(self, request):

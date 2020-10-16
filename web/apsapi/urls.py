@@ -43,7 +43,7 @@ router.register(r'subpref', SubprefViewSet)
 router.register(r'turmas', TurmasViewSet)
 router.register(r'servidores', ServidoresViewSet)
 router.register(r'ambientes', AmbientesViewSet)
-router.register(r'livro_aberto_escola_aberta', LivroAbertoModelViewSet)
+router.register('livroaberto-escolaaberta', LivroAbertoModelViewSet, 'livroaberto-escolaaberta')
 # router.register('modalidades/<int:codesc>', ModalidadesPraticadas.as_view(), base_name='ModalidadeEnsino')
 
 urlpatterns = [

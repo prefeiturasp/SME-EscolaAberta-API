@@ -46,7 +46,7 @@ class LivroAbertoEscolas(APIView):
         return Response(escolas)
 
 
-class LivroAbertoEscolasViewSet(viewsets.ModelViewSet):
+class LivroAbertoEscolasViewSet(viewsets.ViewSet):
 
     @action(detail=False, url_path='ano-atual', methods=['GET'])
     def ano_atual(self, request):

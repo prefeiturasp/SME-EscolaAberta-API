@@ -47,21 +47,7 @@ class LivroAbertoEscolas(APIView):
         return Response(escolas)
 
 
-class LivroAbertoSerializer(serializers.Serializer):
-    dre = serializers.CharField(max_length=10)
-    codesc = serializers.CharField(max_length=7)
-    tipoesc = serializers.CharField(max_length=7)
-    nomesc = serializers.CharField(max_length=100)
-    nomescofi = serializers.CharField(max_length=100)
-    ceu = serializers.CharField(max_length=100)
-    diretoria = serializers.CharField(max_length=150)
-    subpref = serializers.CharField(max_length=50)
-    endereco = serializers.CharField(max_length=50)
-    numero = serializers.CharField(max_length=50)
-
-
 class LivroAbertoModelViewSet(viewsets.GenericViewSet):
-    serializer_class = LivroAbertoSerializer
 
     def get_queryset(self):
         queryset = super(LivroAbertoModelViewSet, self).get_queryset()

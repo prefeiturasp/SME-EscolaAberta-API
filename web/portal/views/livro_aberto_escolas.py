@@ -53,6 +53,11 @@ class LivroAbertoModelViewSet(viewsets.ModelViewSet):
         queryset = queryset.none()
         return queryset
 
+    def get_serializer_class(self):
+        return self.serializers.get(self.action, self.serializers['default'])
+
+    serializer_class = get_serializer_class()
+
     @action(detail=False, url_path='ano-atual', methods=['GET'])
     def ano_atual(self, request):
         return Response(data={'detail': 'resultados atuais'},

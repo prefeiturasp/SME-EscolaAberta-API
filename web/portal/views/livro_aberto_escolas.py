@@ -60,7 +60,7 @@ class LivroAbertoSerializer(serializers.Serializer):
     numero = serializers.CharField(max_length=50)
 
 
-class LivroAbertoModelViewSet(viewsets.ModelViewSet):
+class LivroAbertoModelViewSet(viewsets.GenericViewSet):
     serializer_class = LivroAbertoSerializer
 
     def get_queryset(self):

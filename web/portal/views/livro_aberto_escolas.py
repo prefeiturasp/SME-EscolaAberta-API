@@ -1,8 +1,9 @@
 from django.db import connection
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import mixins, status, viewsets
+from rest_framework import status, viewsets
 from rest_framework.decorators import action
+from rest_framework import serializers
 
 
 # Create your views here.
@@ -46,17 +47,26 @@ class LivroAbertoEscolas(APIView):
         return Response(escolas)
 
 
+class LivroAbertoSerializer(serializers.Serializer):
+    dre = serializers.CharField(max_length=10)
+    codesc = serializers.CharField(max_length=7)
+    tipoesc = serializers.CharField(max_length=7)
+    nomesc = serializers.CharField(max_length=100)
+    nomescofi = serializers.CharField(max_length=100)
+    ceu = serializers.CharField(max_length=100)
+    diretoria = serializers.CharField(max_length=150)
+    subpref = serializers.CharField(max_length=50)
+    endereco = serializers.CharField(max_length=50)
+    numero = serializers.CharField(max_length=50)
+
+
 class LivroAbertoModelViewSet(viewsets.ModelViewSet):
+    serializer_class = LivroAbertoSerializer
 
     def get_queryset(self):
         queryset = super(LivroAbertoModelViewSet, self).get_queryset()
         queryset = queryset.none()
         return queryset
-
-    def get_serializer_class(self):
-        return self.serializers.get(self.action, self.serializers['default'])
-
-    serializer_class = get_serializer_class()
 
     @action(detail=False, url_path='ano-atual', methods=['GET'])
     def ano_atual(self, request):

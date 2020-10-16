@@ -1,11 +1,17 @@
 from django.db import connection
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import viewsets
+from rest_framework import mixins, status, viewsets
 from rest_framework.decorators import action
 
 
 # Create your views here.
+
+class LivroAbertoBaseModelViewSet(viewsets.ModelViewSet):
+
+    def get_queryset(self):
+        queryset = super(LivroAbertoBaseModelViewSet, self).get_queryset()
+        return queryset.none()
 
 
 class LivroAbertoEscolas(APIView):
@@ -46,25 +52,19 @@ class LivroAbertoEscolas(APIView):
         return Response(escolas)
 
 
-class LivroAbertoEscolasViewSet(viewsets.ViewSet):
+class LivroAbertoModelViewSet(LivroAbertoBaseModelViewSet):
 
     @action(detail=False, url_path='ano-atual', methods=['GET'])
     def ano_atual(self, request):
-        return Response({
-            'status': 200,
-            'results': 'ANO ATUAL'
-        })
+        return Response(data={'detail': 'resultados atuais'},
+                        status=status.HTTP_200_OK)
 
     @action(detail=False, url_path='2018', methods=['GET'])
     def ano_de_2018(self, request):
-        return Response({
-            'status': 200,
-            'results': 'ANO 2018'
-        })
+        return Response(data={'detail': 'resultados de 2018'},
+                        status=status.HTTP_200_OK)
 
     @action(detail=False, url_path='2019', methods=['GET'])
     def ano_de_2019(self, request):
-        return Response({
-            'status': 200,
-            'results': 'ANO 2019'
-        })
+        return Response(data={'detail': 'resultados de 2019'},
+                        status=status.HTTP_200_OK)

@@ -29,14 +29,14 @@ pipeline {
 
        stage('Analise codigo') {
 	     when {
-           branch 'dev'
+           branch 'homolog'
          }
         steps {
           sh 'sonar-scanner \
               -Dsonar.projectKey=SME-EscolaAberta-API \
               -Dsonar.sources=. \
               -Dsonar.host.url=http://sonar.sme.prefeitura.sp.gov.br \
-              -Dsonar.login=419686492d717d258ec6cdd3111c5e0bc0c47236'
+              -Dsonar.login=2627ea36ea9b8db72d3a33a4a5e8ac4863f6efc5'
         }
        }
       

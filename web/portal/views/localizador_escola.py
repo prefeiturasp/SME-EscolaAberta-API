@@ -1,4 +1,5 @@
 from django.db import connection
+from escolas.services import consulta_email_escola
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -103,8 +104,13 @@ where distancias.distance_in_km <= {radius}
 
         cursor = connection.cursor()
         cursor.execute(query)
-        modalidades = {'results':
-                           [dict(zip([column[0] for column in cursor.description], row))
-                            for row in cursor.fetchall()]}
+
+        results = []
+        for row in cursor.fetchall():
+            escola = dict(zip([column[0] for column in cursor.description], row))
+            escola['email'] = consulta_email_escola(escola['codesc'])
+            results.append(escola)
+
+        modalidades = {'results': results}
 
         return Response(modalidades)

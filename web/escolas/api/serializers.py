@@ -1,8 +1,12 @@
+from escolas.models import Ceus, Escolas
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from escolas.models import Escolas, Ceus
+
+from ..services import consulta_email_escola
 
 
 class EscolasSerializer(ModelSerializer):
+    email = SerializerMethodField()
+
     class Meta:
         model = Escolas
         fields = (
@@ -10,6 +14,9 @@ class EscolasSerializer(ModelSerializer):
         )
         # filter_fields = ('cdesc')
         filter_fields = ('codesc')
+    
+    def get_email(cls, obj):
+        return consulta_email_escola(obj.codesc)
 
 
 class BairroSerializer(ModelSerializer):

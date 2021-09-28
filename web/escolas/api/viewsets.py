@@ -1,11 +1,11 @@
 import django_filters
 from escolas.filters import CeuFilter
-from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+from rest_framework.viewsets import ReadOnlyModelViewSet
 from escolas.models import Escolas, Ceus
 from .serializers import EscolasSerializer, BairroSerializer, DistritoSerializer, SubprefSerializer, CeuSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
-
+from rest_framework.response import Response
 
 class EscolasViewSet(ReadOnlyModelViewSet):
     """
@@ -17,6 +17,18 @@ class EscolasViewSet(ReadOnlyModelViewSet):
     filter_backends = (filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend,)
     search_fields = ('nomesc', 'nomescofi')
     filterset_fields = ('dre', 'tipoesc', 'distrito', 'bairro', 'subpref')
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        if 'page' in request.query_params:
+            page = self.paginate_queryset(queryset)
+            if page is not None:
+                serializer = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({'results': serializer.data})
 
 
 class BairrosViewSet(ReadOnlyModelViewSet):

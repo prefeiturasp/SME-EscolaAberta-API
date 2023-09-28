@@ -3,7 +3,7 @@ pipeline {
       branchname =  env.BRANCH_NAME.toLowerCase()
       kubeconfig = getKubeconf(env.branchname)
       registryCredential = 'jenkins_registry'
-      namespace = "${env.branchname == 'dev' ? 'escolaaberta-dev' : env.branchname == 'homolog' ? 'sme-escolaaberta' : env.branchname == 'homolog-r2' ? 'sme-escolaaberta' : 'sme-escolaaberta' }"
+      namespace = "${env.branchname == 'dev' ? 'escolaaberta-dev' : env.branchname == 'homolog' ? 'escolaaberta-hom' : env.branchname == 'homolog-r2' ? 'escolaaberta-hom2' : 'sme-escolaaberta' }"
     }
   
     agent {
@@ -104,7 +104,7 @@ def sendTelegram(message) {
 def getKubeconf(branchName) {
     if("main".equals(branchName)) { return "config_prd"; }
     else if ("master".equals(branchName)) { return "config_prd"; }
-    else if ("homolog".equals(branchName)) { return "config_hom"; }
-    else if ("release".equals(branchName)) { return "config_hom"; }
+    else if ("homolog".equals(branchName)) { return "config_release"; }
+    else if ("release".equals(branchName)) { return "config_release"; }
     else if ("dev".equals(branchName)) { return "config_release"; } 
 }

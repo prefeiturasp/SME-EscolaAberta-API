@@ -26,6 +26,7 @@ pipeline {
 
         stage('Testes') {
         steps {
+          checkout scm 
           sh 'pip install --user --upgrade pip'    
           sh 'pip install -r requirements.txt --user'
           sh 'pip install --user tox && tox -e test'

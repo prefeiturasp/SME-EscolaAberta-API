@@ -34,7 +34,7 @@ pipeline {
        }
 
         stage('AnaliseCodigo') {
-          when { branch 'homolog' }
+          when { branch 'testeapijenkins2' }
           steps {
               withSonarQubeEnv('sonarqube-local'){
                 sh 'echo "[ INFO ] Iniciando analise Sonar..." && sonar-scanner \
@@ -47,7 +47,7 @@ pipeline {
         
 
         stage('Build') {
-          when { anyOf { branch 'master'; branch 'main'; branch "story/*"; branch 'dev'; branch 'release'; branch 'homolog';  } } 
+          when { anyOf { branch 'master'; branch 'main'; branch "story/*"; branch 'dev'; branch 'release'; branch 'testeapijenkins2';  } } 
           agent { kubernetes { 
                   label 'builder'
                   defaultContainer 'builder'
@@ -67,7 +67,7 @@ pipeline {
         }
         
         stage('Deploy'){
-            when { anyOf {  branch 'master'; branch 'main'; branch 'development'; branch 'dev'; branch 'release'; branch 'homolog';  } }        
+            when { anyOf {  branch 'master'; branch 'main'; branch 'development'; branch 'dev'; branch 'release'; branch 'testeapijenkins2';  } }        
             steps {
                 script{
                     if ( env.branchname == 'main' ||  env.branchname == 'master' || env.branchname == 'homolog' || env.branchname == 'release' ) {

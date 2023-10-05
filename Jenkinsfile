@@ -6,9 +6,11 @@ pipeline {
       namespace = "${env.branchname == 'dev' ? 'escolaaberta-dev' : env.branchname == 'homolog' ? 'escolaaberta-hom' : env.branchname == 'homolog-r2' ? 'escolaaberta-hom2' : 'sme-escolaaberta' }"
     }
   
-    agent {
-      node { label 'AGENT-PYTHON36' }
-    }
+    agent { kubernetes { 
+                  label 'python36'
+                  defaultContainer 'python36'
+                }
+              }
 
     options {
       buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '15'))
@@ -46,7 +48,13 @@ pipeline {
 
         stage('Build') {
           when { anyOf { branch 'master'; branch 'main'; branch "story/*"; branch 'dev'; branch 'release'; branch 'homolog';  } } 
+          agent { kubernetes { 
+                  label 'builder'
+                  defaultContainer 'builder'
+                }
+              }
           steps {
+            checkout scm
             script {
               imagename1 = "registry.sme.prefeitura.sp.gov.br/${env.branchname}/escolaaberta-backend"
               dockerImage1 = docker.build(imagename1, "-f Dockerfile .")

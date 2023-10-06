@@ -26,7 +26,7 @@ pipeline {
 
         stage('Testes') {
         steps {
-          checkout scm
+         
           sh 'export PATH="/home/jenkins/agent:$PATH"'
           sh 'pwd'
           sh 'ls'  

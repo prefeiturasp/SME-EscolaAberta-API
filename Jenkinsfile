@@ -27,7 +27,7 @@ pipeline {
         stage('Testes') {
         steps {
           checkout scm
-          sh 'export PATH="$HOME/.local/bin:$PATH" 
+          sh 'export PATH="$HOME/.local/bin:$PATH"' 
           sh 'pip install --user --upgrade pip'    
           sh 'pip install -r requirements.txt --user'
           sh 'pip install --user tox && tox -e test'

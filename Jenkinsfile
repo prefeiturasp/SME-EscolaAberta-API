@@ -45,8 +45,12 @@ pipeline {
 
         stage('AnaliseCodigo') {
           when { branch 'testeapijenkins2' }
+          agent { kubernetes { 
+                  label 'python36'
+                  defaultContainer 'builder'
+                }
+              }
           steps {
-              checkout scm
               withSonarQubeEnv('sonarqube-local'){
                 sh 'echo "[ INFO ] Iniciando analise Sonar..." && sonar-scanner \
                 -Dsonar.projectKey=SME-EscolaAberta-API \

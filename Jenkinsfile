@@ -29,10 +29,13 @@ pipeline {
           //checkout scm
           sh 'export PATH="/root/.local/bin:$PATH"'
           sh 'pwd'
-          sh 'ls'  
+          sh 'ls'
+          sh 'env'  
           sh 'pip install --user --upgrade pip'    
           sh 'pip install -r requirements.txt --user'
-          sh 'pip install --user tox && tox -e test'
+          sh 'pip install --user tox'
+          sh 'find -name tox /root'
+          sh 'tox -e test' 
         }
         
        }

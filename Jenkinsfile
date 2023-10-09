@@ -27,7 +27,7 @@ pipeline {
         stage('Testes') {
         steps {
           //checkout scm
-          sh 'export PATH="/root/.local/bin:$PATH"'
+          sh 'export PATH=$PATH:/root/.local/bin'
           sh 'pwd'
           sh 'ls'
           sh 'env'  

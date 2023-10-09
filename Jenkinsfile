@@ -34,7 +34,7 @@ pipeline {
           sh 'pip install --user --upgrade pip'    
           sh 'pip install -r requirements.txt --user'
           sh 'pip install --user tox'
-          sh 'find -name tox /root'
+          sh 'find /root -name tox'
           sh 'tox -e test' 
         }
         

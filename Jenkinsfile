@@ -27,13 +27,13 @@ pipeline {
         stage('Testes') {
         steps {
           //checkout scm
-          sh 'export PATH=$PATH:/root/.local/bin'
           sh 'pwd'
           sh 'ls'
           sh 'env'  
           sh 'pip install --user --upgrade pip'    
           sh 'pip install -r requirements.txt --user'
           sh 'pip install --user tox'
+          sh 'export PATH=$PATH:/root/.local/bin'
           sh 'find /root -name tox'
           sh 'tox -e test' 
         }

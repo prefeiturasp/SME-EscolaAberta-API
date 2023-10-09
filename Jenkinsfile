@@ -46,6 +46,7 @@ pipeline {
         stage('AnaliseCodigo') {
           when { branch 'testeapijenkins2' }
           steps {
+              checkout scm
               withSonarQubeEnv('sonarqube-local'){
                 sh 'echo "[ INFO ] Iniciando analise Sonar..." && sonar-scanner \
                 -Dsonar.projectKey=SME-EscolaAberta-API \

@@ -27,7 +27,7 @@ pipeline {
         stage('Testes') {
         steps {
           //checkout scm
-          //sh 'export PATH="/root/.local/bin:$PATH"'
+          sh 'export PATH="/root/.local/bin:$PATH"'
           sh 'pwd'
           sh 'ls'  
           sh 'pip install --user --upgrade pip'    

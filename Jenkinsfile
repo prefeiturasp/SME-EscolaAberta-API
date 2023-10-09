@@ -27,7 +27,7 @@ pipeline {
         stage('Testes') {
         steps {
          
-          sh 'export PATH="$HOME/.local/bin:$PATH"'
+          sh 'export PATH="/home/jenkins/.local/bin:$PATH"'
           sh 'pwd'
           sh 'ls'  
           sh 'pip install --user --upgrade pip'    

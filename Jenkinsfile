@@ -25,17 +25,17 @@ pipeline {
         }
 
         stage('Testes') {
-        steps {
-         
-          sh 'export PATH="$HOME/.local/bin:$PATH"'
-          sh 'pwd'
-          sh 'ls'  
-          sh 'pip install --user --upgrade pip'    
-          sh 'pip install -r requirements.txt --user'
-          sh 'pip install --user tox && tox -e test'
-        }
-        
-       }
+    steps {
+        sh 'export PATH="$HOME/.local/bin:$PATH"'
+        sh 'python -m venv venv'
+        sh 'source venv/bin/activate'
+        sh 'pip install --upgrade pip'
+        sh 'pip install -r requirements.txt'
+        sh 'pip install tox'
+        sh 'tox -e test'
+    }
+}
+
 
         stage('AnaliseCodigo') {
           when { branch 'testeapijenkins2' }

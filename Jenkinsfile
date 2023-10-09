@@ -63,6 +63,7 @@ pipeline {
                 }
               } 
           steps {
+            checkout scm
             script {
               imagename1 = "registry.sme.prefeitura.sp.gov.br/${env.branchname}/escolaaberta-backend"
               dockerImage1 = docker.build(imagename1, "-f Dockerfile .")

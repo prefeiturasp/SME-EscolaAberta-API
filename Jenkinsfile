@@ -76,7 +76,12 @@ pipeline {
         }
         
         stage('Deploy'){
-            when { anyOf {  branch 'master'; branch 'main'; branch 'development'; branch 'dev'; branch 'release'; branch 'homolog';  } }        
+            when { anyOf {  branch 'master'; branch 'main'; branch 'development'; branch 'dev'; branch 'release'; branch 'homolog';  } }
+            agent { kubernetes { 
+                  label 'builder'
+                  defaultContainer 'builder'
+                }
+              }       
             steps {
                 checkout scm
                 script{

@@ -76,8 +76,14 @@ pipeline {
         }
         
         stage('Deploy'){
-            when { anyOf {  branch 'master'; branch 'main'; branch 'development'; branch 'dev'; branch 'release'; branch 'homolog';  } }        
+            when { anyOf {  branch 'master'; branch 'main'; branch 'development'; branch 'dev'; branch 'release'; branch 'homolog';  } }
+            agent { kubernetes { 
+                  label 'builder'
+                  defaultContainer 'builder'
+                }
+              }       
             steps {
+                checkout scm
                 script{
                     if ( env.branchname == 'main' ||  env.branchname == 'master' || env.branchname == 'homolog' || env.branchname == 'release' ) {
                         sendTelegram("🤩 [Deploy ${env.branchname}] Job Name: ${JOB_NAME} \nBuild: ${BUILD_DISPLAY_NAME} \nMe aprove! \nLog: \n${env.BUILD_URL}")
@@ -88,10 +94,13 @@ pipeline {
                         }
                     }                    
                     withCredentials([file(credentialsId: "${kubeconfig}", variable: 'config')]){
-                        sh('if [ -f '+"$home"+'/.kube/config ];then rm -f '+"$home"+'/.kube/config; fi')
+                        sh('rm -f '+"$home"+'/.kube/config')
                         sh('cp $config '+"$home"+'/.kube/config')
+                        //sh('if [ -f '+"$home"+'/.kube/config ];then rm -f '+"$home"+'/.kube/config; fi')
+                        //sh('cp $config '+"$home"+'/.kube/config')
                         sh "kubectl rollout restart deployment/escolaaberta-backend -n ${namespace}"
-                        sh('if [ -f '+"$home"+'/.kube/config ];then rm -f '+"$home"+'/.kube/config; fi')
+                        //sh('if [ -f '+"$home"+'/.kube/config ];then rm -f '+"$home"+'/.kube/config; fi')
+                        sh('rm -f '+"$home"+'/.kube/config')
                    }
                 }
             }           

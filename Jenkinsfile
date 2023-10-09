@@ -88,10 +88,13 @@ pipeline {
                         }
                     }                    
                     withCredentials([file(credentialsId: "${kubeconfig}", variable: 'config')]){
-                        sh('if [ -f '+"$home"+'/.kube/config ];then rm -f '+"$home"+'/.kube/config; fi')
+                        sh('rm -f '+"$home"+'/.kube/config')
                         sh('cp $config '+"$home"+'/.kube/config')
+                        //sh('if [ -f '+"$home"+'/.kube/config ];then rm -f '+"$home"+'/.kube/config; fi')
+                        //sh('cp $config '+"$home"+'/.kube/config')
                         sh "kubectl rollout restart deployment/escolaaberta-backend -n ${namespace}"
-                        sh('if [ -f '+"$home"+'/.kube/config ];then rm -f '+"$home"+'/.kube/config; fi')
+                        //sh('if [ -f '+"$home"+'/.kube/config ];then rm -f '+"$home"+'/.kube/config; fi')
+                        sh('rm -f '+"$home"+'/.kube/config')
                    }
                 }
             }           

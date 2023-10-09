@@ -78,6 +78,7 @@ pipeline {
         stage('Deploy'){
             when { anyOf {  branch 'master'; branch 'main'; branch 'development'; branch 'dev'; branch 'release'; branch 'homolog';  } }        
             steps {
+                checkout scm
                 script{
                     if ( env.branchname == 'main' ||  env.branchname == 'master' || env.branchname == 'homolog' || env.branchname == 'release' ) {
                         sendTelegram("🤩 [Deploy ${env.branchname}] Job Name: ${JOB_NAME} \nBuild: ${BUILD_DISPLAY_NAME} \nMe aprove! \nLog: \n${env.BUILD_URL}")

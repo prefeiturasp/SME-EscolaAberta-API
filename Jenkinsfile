@@ -27,15 +27,17 @@ pipeline {
         stage('Testes') {
         steps {
           //checkout scm
-          sh 'pwd'
-          sh 'ls'
-          sh 'env'  
-          sh 'pip install --user --upgrade pip'    
-          sh 'pip install -r requirements.txt --user'
-          sh 'pip install --user tox'
-          sh 'export PATH=$PATH:/root/.local/bin'
-          sh 'find /root -name tox'
-          sh 'tox -e test' 
+          sh '''
+          pwd
+          ls
+          env 
+          pip install --user --upgrade pip    
+          pip install -r requirements.txt --user
+          pip install --user tox
+          export PATH=$PATH:/root/.local/bin
+          find /root -name tox
+          tox -e test
+          '''
         }
         
        }

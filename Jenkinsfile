@@ -6,9 +6,11 @@ pipeline {
       namespace = "${env.branchname == 'dev' ? 'escolaaberta-dev' : env.branchname == 'homolog' ? 'escolaaberta-hom' : env.branchname == 'homolog-r2' ? 'escolaaberta-hom2' : 'sme-escolaaberta' }"
     }
   
-    agent {
-      node { label 'AGENT-PYTHON36' }
-    }
+   agent { kubernetes { 
+                  label 'python36'
+                  defaultContainer 'python36'
+                }
+              }
 
     options {
       buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '15'))
@@ -24,15 +26,24 @@ pipeline {
 
         stage('Testes') {
         steps {
-          sh 'pip install --user --upgrade pip'    
-          sh 'pip install -r requirements.txt --user'
-          sh 'pip install --user tox && tox -e test'
+          //checkout scm
+          sh '''
+          pip install --user --upgrade pip    
+          pip install -r requirements.txt --user
+          pip install --user tox
+          export PATH=$PATH:/root/.local/bin
+          tox -e test
+          '''
         }
         
        }
-
         stage('AnaliseCodigo') {
           when { branch 'homolog' }
+          agent { kubernetes { 
+                  label 'python36'
+                  defaultContainer 'builder'
+                }
+              }
           steps {
               withSonarQubeEnv('sonarqube-local'){
                 sh 'echo "[ INFO ] Iniciando analise Sonar..." && sonar-scanner \
@@ -45,7 +56,12 @@ pipeline {
         
 
         stage('Build') {
-          when { anyOf { branch 'master'; branch 'main'; branch "story/*"; branch 'dev'; branch 'release'; branch 'homolog';  } } 
+          when { anyOf { branch 'master'; branch 'main'; branch "story/*"; branch 'dev'; branch 'release'; branch 'homolog';  } }
+          agent { kubernetes { 
+                  label 'builder'
+                  defaultContainer 'builder'
+                }
+              } 
           steps {
             script {
               imagename1 = "registry.sme.prefeitura.sp.gov.br/${env.branchname}/escolaaberta-backend"
@@ -73,7 +89,7 @@ pipeline {
                     withCredentials([file(credentialsId: "${kubeconfig}", variable: 'config')]){
                         sh('if [ -f '+"$home"+'/.kube/config ];then rm -f '+"$home"+'/.kube/config; fi')
                         sh('cp $config '+"$home"+'/.kube/config')
-                        sh "kubectl rollout restart deployment/escolaaberta-backend -n sme-escolaaberta"
+                        sh "kubectl rollout restart deployment/escolaaberta-backend -n ${namespace}"
                         sh('if [ -f '+"$home"+'/.kube/config ];then rm -f '+"$home"+'/.kube/config; fi')
                    }
                 }

@@ -1,13 +1,9 @@
-import os
 import json
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from escolas.models import Escolas
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-caminho_json = os.path.join(BASE_DIR, "dadosEscola.json")
-
-with open(caminho_json, "r", encoding="utf-8") as f:
+with open("escolas/scripts/atualizaEscolas/dadosEscolas.json", "r", encoding="utf-8") as f:
     dados_json = json.load(f)
 
 campo_mapeamento = {

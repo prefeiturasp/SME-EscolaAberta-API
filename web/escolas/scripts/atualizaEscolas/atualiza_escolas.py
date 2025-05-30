@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 from escolas.models import Escolas
 
-with open("escolas/scripts/atualizaEscolas/dadosEscola.json", "r", encoding="utf-8") as f:
+with open("escolas/scripts/atualizaEscolas/dadosEscolas.json", "r", encoding="utf-8") as f:
     dados_json = json.load(f)
 
 campo_mapeamento = {

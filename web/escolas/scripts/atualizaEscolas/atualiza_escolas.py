@@ -48,7 +48,14 @@ def processar_entrada(entrada):
         valor_json = entrada.get(campo_json)
         if valor_json not in [None, ""]:
             try:
-                if campo_modelo in ["cep", "setor", "codinep"]:
+                if campo_modelo == "setor":
+                    coddist = entrada.get("CDIST")
+                    setor = entrada.get("SETOR")
+                    if coddist is not None and setor is not None:
+                        valor_json = int(f"{int(coddist):02d}{int(setor):02d}")
+                    else:
+                        continue
+                elif campo_modelo in ["cep", "codinep"]:
                     valor_json = int(valor_json)
                 elif campo_modelo in ["latitude", "longitude"]:
                     valor_json = float(valor_json)

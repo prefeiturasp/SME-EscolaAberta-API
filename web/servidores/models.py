@@ -51,3 +51,4 @@ class Servidores(models.Model):
     dc_sobreposto = models.CharField(max_length=100, blank=True, null=True)
     dt_inicio_sobreposto = models.TextField(blank=True, null=True)
     database = models.TextField(blank=True, null=True)
+    possui_sigilo = models.BooleanField(default=False)
